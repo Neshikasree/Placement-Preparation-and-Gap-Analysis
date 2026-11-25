@@ -72,6 +72,261 @@ SKILL_SUGGESTIONS = {
     },
 }
 
+# --------------------------------------------------
+# ADDITIONAL SKILL RECOMMENDATIONS
+# --------------------------------------------------
+
+SKILL_SUGGESTIONS.update({
+
+    "Statistics": {
+        "High":
+            "Learn mean, median, mode, variance, probability "
+            "and basic statistical concepts.",
+
+        "Medium":
+            "Practise probability distributions, sampling "
+            "and hypothesis testing.",
+
+        "Low":
+            "Revise regression, confidence intervals and "
+            "statistical inference using real datasets.",
+
+        "None":
+            "Maintain your statistical knowledge by analysing "
+            "datasets regularly.",
+    },
+
+    "Excel": {
+        "High":
+            "Learn spreadsheet formatting, formulas, SUM, "
+            "AVERAGE, COUNT and basic charts.",
+
+        "Medium":
+            "Practise lookup functions, conditional formatting "
+            "and pivot tables.",
+
+        "Low":
+            "Explore Power Query, advanced formulas and "
+            "interactive dashboards.",
+
+        "None":
+            "Keep practising spreadsheet-based data analysis.",
+    },
+
+    "Pandas": {
+        "High":
+            "Learn Series, DataFrames, CSV imports and "
+            "basic row and column selection.",
+
+        "Medium":
+            "Practise filtering, groupby, merging datasets "
+            "and handling missing values.",
+
+        "Low":
+            "Explore time-series analysis, vectorized operations "
+            "and efficient data transformations.",
+
+        "None":
+            "Maintain your Pandas skills through data projects.",
+    },
+
+    "Data Visualization": {
+        "High":
+            "Learn bar charts, line charts, scatter plots "
+            "and basic visualization principles.",
+
+        "Medium":
+            "Practise Matplotlib, dashboard layouts "
+            "and communicating insights clearly.",
+
+        "Low":
+            "Build interactive dashboards and practise "
+            "data storytelling with complex datasets.",
+
+        "None":
+            "Continue creating clear and accessible visualizations.",
+    },
+
+    "Linear Algebra": {
+        "High":
+            "Learn vectors, matrices, matrix addition "
+            "and multiplication.",
+
+        "Medium":
+            "Practise dot products, linear transformations "
+            "and systems of linear equations.",
+
+        "Low":
+            "Revise eigenvalues, eigenvectors and "
+            "matrix decomposition.",
+
+        "None":
+            "Apply linear algebra concepts to numerical "
+            "and machine learning projects.",
+    },
+
+    "Machine Learning": {
+        "High":
+            "Learn supervised and unsupervised learning, "
+            "training data and basic regression.",
+
+        "Medium":
+            "Practise classification, decision trees, "
+            "feature engineering and model evaluation.",
+
+        "Low":
+            "Explore cross-validation, hyperparameter tuning "
+            "and model comparison.",
+
+        "None":
+            "Build and evaluate machine learning projects "
+            "using suitable public datasets.",
+    },
+
+    "NumPy": {
+        "High":
+            "Learn arrays, indexing, slicing "
+            "and basic numerical operations.",
+
+        "Medium":
+            "Practise broadcasting, reshaping arrays "
+            "and vectorized calculations.",
+
+        "Low":
+            "Explore numerical linear algebra and "
+            "efficient array operations.",
+
+        "None":
+            "Maintain your numerical computing skills "
+            "through Python projects.",
+    },
+
+    "Deep Learning": {
+        "High":
+            "Learn neural networks, activation functions "
+            "and basic training concepts.",
+
+        "Medium":
+            "Practise building small neural networks "
+            "and understanding loss functions.",
+
+        "Low":
+            "Explore model regularization, transfer learning "
+            "and evaluation techniques.",
+
+        "None":
+            "Continue experimenting with educational "
+            "deep learning projects.",
+    },
+
+    "Networking": {
+        "High":
+            "Learn IP addresses, DNS, TCP/IP "
+            "and basic network architecture.",
+
+        "Medium":
+            "Study routing, switching, network segmentation "
+            "and secure communication protocols.",
+
+        "Low":
+            "Revise network reliability, defensive monitoring "
+            "and secure network design.",
+
+        "None":
+            "Maintain your networking knowledge through "
+            "authorized educational exercises.",
+    },
+
+    "Linux": {
+        "High":
+            "Learn basic Linux commands, directories "
+            "and file permissions.",
+
+        "Medium":
+            "Practise shell scripting, process management "
+            "and system administration.",
+
+        "Low":
+            "Study system hardening, service management "
+            "and defensive system monitoring.",
+
+        "None":
+            "Maintain your Linux skills through "
+            "local development projects.",
+    },
+
+    "Cybersecurity Fundamentals": {
+        "High":
+            "Learn confidentiality, integrity, availability, "
+            "password security and common online risks.",
+
+        "Medium":
+            "Study access control, security policies "
+            "and vulnerability management concepts.",
+
+        "Low":
+            "Explore risk assessment, defence in depth "
+            "and secure system design.",
+
+        "None":
+            "Stay informed about defensive security practices.",
+    },
+
+    "Cryptography": {
+        "High":
+            "Learn the differences between encryption, "
+            "hashing and digital signatures.",
+
+        "Medium":
+            "Study symmetric and asymmetric encryption "
+            "and public key infrastructure concepts.",
+
+        "Low":
+            "Revise certificate validation, key management "
+            "and secure communication principles.",
+
+        "None":
+            "Maintain your understanding of modern "
+            "cryptographic standards.",
+    },
+
+    "Security Monitoring": {
+        "High":
+            "Learn the purpose of system logs, security alerts "
+            "and monitoring dashboards.",
+
+        "Medium":
+            "Study log analysis, alert classification "
+            "and defensive monitoring workflows.",
+
+        "Low":
+            "Practise interpreting simulated security events "
+            "and improving monitoring policies.",
+
+        "None":
+            "Continue studying defensive monitoring practices.",
+    },
+
+    "Incident Response": {
+        "High":
+            "Learn incident identification, reporting "
+            "and basic response principles.",
+
+        "Medium":
+            "Study containment, recovery, documentation "
+            "and incident response planning.",
+
+        "Low":
+            "Practise defensive tabletop exercises "
+            "and post-incident reviews.",
+
+        "None":
+            "Maintain your knowledge of incident response "
+            "and organizational recovery procedures.",
+    },
+
+})
+
 DEFAULT_SUGGESTION = "Look for a beginner-friendly course or tutorial on this skill."
 
 

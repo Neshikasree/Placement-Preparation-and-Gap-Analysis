@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Register - Placement Preparation{% endblock %}
+
+{% block content %}
+<section class="card narrow">
+    <h1>Check your placement readiness</h1>
+    <p class="muted">Register, rate your current skills, and see how ready you are for your target job role.</p>
+
+    <form method="post" action="{{ url_for('register') }}">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" value="{{ form.get('name', '') }}" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value="{{ form.get('email', '') }}" required>
+
+        <label for="target_role">Target job role</label>
+        <select id="target_role" name="target_role" required>
+            <option value="" disabled {% if not form.get('target_role') %}selected{% endif %}>Choose a role</option>
+            {% for role in roles %}
+                <option value="{{ role }}" {% if form.get('target_role') == role %}selected{% endif %}>{{ role }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" class="btn">Register and continue</button>
+    </form>
+</section>
+{% endblock %}

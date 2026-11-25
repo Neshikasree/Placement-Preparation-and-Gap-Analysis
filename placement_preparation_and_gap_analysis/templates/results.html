@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Results - {{ student.name }}{% endblock %}
+
+{% block content %}
+<h1>Results for {{ student.name }}</h1>
+<p class="muted">Target role: <strong>{{ result.target_role }}</strong></p>
+
+<section class="card score-card">
+    <div class="score-number {{ level_class }}">{{ "%.1f"|format(result.readiness_score) }}%</div>
+    <div class="score-body">
+        <h2>{{ level_label }}</h2>
+        <div class="progress" role="progressbar" aria-valuenow="{{ result.readiness_score }}" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-fill {{ level_class }}" style="width: {{ result.readiness_score }}%"></div>
+        </div>
+        <p class="muted">{{ result.total_achieved_points }} of {{ result.total_required_points }} required skill points achieved.</p>
+    </div>
+</section>
+
+<section class="card">
+    <h2>Skill gap analysis</h2>
+    <div class="table-wrap">
+    <table>
+        <thead>
+            <tr><th>Skill</th><th>Required</th><th>Your level</th><th>Gap</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+        {% for item in result.skill_gaps %}
+            <tr>
+                <td>{{ item.skill }}</td>
+                <td>
+                    <div class="bar"><div class="bar-fill required" style="width: {{ item.required_level / max_level * 100 }}%"></div></div>
+                    {{ item.required_level }}
+                </td>
+                <td>
+                    <div class="bar"><div class="bar-fill current" style="width: {{ item.current_level / max_level * 100 }}%"></div></div>
+                    {{ item.current_level }}{% if item.missing %} <span class="hint">(not rated)</span>{% endif %}
+                </td>
+                <td>{{ item.gap }}</td>
+                <td><span class="badge {% if item.gap == 0 %}met{% else %}needs{% endif %}">{{ item.status }}</span></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</section>
+
+<section class="card">
+    <h2>Preparation recommendations</h2>
+    <p class="muted">Biggest gaps first.</p>
+    {% for rec in recommendations %}
+        <article class="rec">
+            <h3>{{ rec.skill }} <span class="badge {{ rec.priority|lower }}">{{ rec.priority }} priority</span>
+                <span class="hint">gap {{ rec.gap }}</span></h3>
+            <p><strong>{{ rec.advice }}</strong></p>
+            <p>{{ rec.suggestion }}</p>
+            {% if rec.priority != "None" and resources and resources.get(rec.skill) %}
+    <p class="rec-links">
+        Learn it:
+        {% for title, url in resources[rec.skill] %}
+            <a href="{{ url }}" target="_blank" rel="noopener">{{ title }}</a>{{ ", " if not loop.last }}
+        {% endfor %}
+    </p>
+{% endif %}
+        </article>
+    {% endfor %}
+</section>
+
+{% if history|length > 1 %}
+<section class="card">
+    <h2>Your previous scores</h2>
+    <table>
+        <thead><tr><th>Date</th><th>Role</th><th>Score</th></tr></thead>
+        <tbody>
+        {% for entry in history %}
+            <tr><td>{{ entry.created_at }}</td><td>{{ entry.target_role }}</td><td>{{ "%.1f"|format(entry.readiness_score) }}%</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endif %}
+
+<p><a class="btn" href="{{ url_for('assessment', student_id=student.id) }}">Update my skills</a></p>
+{% endblock %}

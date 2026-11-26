@@ -1,0 +1,63 @@
+
+{% extends "base.html" %}
+
+{% block title %}PlaceReady | Students{% endblock %}
+
+{% block content %}
+
+<section class="card">
+
+    <h1>Registered Students</h1>
+
+    <p class="muted">
+        View registered students and their latest placement readiness scores.
+    </p>
+
+    {% if rows %}
+
+        {% for row in rows %}
+
+            <div class="student-row">
+
+                <h3>{{ row.student.name }}</h3>
+
+                <p class="muted">
+                    {{ row.student.email }}
+                </p>
+
+                <p>
+                    Target Role:
+                    <strong>{{ row.student.target_role }}</strong>
+                </p>
+
+                {% if row.latest %}
+                    <p>
+                        Latest Readiness Score:
+                        <strong>{{ "%.1f"|format(row.latest.readiness_score) }}%</strong>
+                    </p>
+
+                    <a class="btn"
+                       href="{{ url_for('results', student_id=row.student.id) }}">
+                        View Results
+                    </a>
+                {% else %}
+                    <p class="muted">Assessment not completed yet.</p>
+                {% endif %}
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p class="muted">No students registered yet.</p>
+
+    {% endif %}
+
+    <a href="{{ url_for('index') }}" class="btn">
+        Back to Home
+    </a>
+
+</section>
+
+{% endblock %}

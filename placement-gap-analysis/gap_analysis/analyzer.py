@@ -8,6 +8,7 @@ Public functions (the interface shared with Member 2 and Member 3):
 import math
 
 from .roles import JOB_ROLES, MAX_SKILL_LEVEL, MIN_SKILL_LEVEL
+from .learning_content import get_learning_content
 
 # ---------------------------------------------------------------------------
 # Recommendation text
@@ -494,31 +495,53 @@ def _priority_for_gap(gap):
     return "None"
 
 
-def get_recommendations(analysis_result):
-    """Create preparation advice from the result of analyze_skills().
 
-    Returns a list of dictionaries, biggest gap first:
-        [{"skill": "Python", "gap": 3, "priority": "High",
-          "advice": "Learn the fundamentals and practise daily.",
-          "suggestion": "Follow a beginner Python course ..."}, ...]
-    Returns an empty list if the analysis failed or is not a valid result.
-    """
-    if not isinstance(analysis_result, dict) or not analysis_result.get("success"):
+def get_recommendations(analysis_result):
+    """Generate personalised skill recommendations."""
+
+    if not isinstance(analysis_result, dict):
+        return []
+
+    if not analysis_result.get("success"):
         return []
 
     recommendations = []
+
     for item in analysis_result.get("skill_gaps", []):
+
         skill = item["skill"]
         gap = item["gap"]
+
         priority = _priority_for_gap(gap)
+
         tips = SKILL_SUGGESTIONS.get(skill, {})
+
+        content = get_learning_content(skill)
+
         recommendations.append({
             "skill": skill,
             "gap": gap,
             "priority": priority,
+
+            "current_level": item["current_level"],
+            "required_level": item["required_level"],
+
             "advice": GENERAL_ADVICE[priority],
-            "suggestion": tips.get(priority, DEFAULT_SUGGESTION),
+
+            "suggestion": tips.get(
+                priority,
+                DEFAULT_SUGGESTION
+            ),
+
+            "topics": content["topics"],
+            "task": content["task"],
+
+            "needs_improvement": gap > 0
         })
 
-    recommendations.sort(key=lambda r: r["gap"], reverse=True)  # stable sort
+    recommendations.sort(
+        key=lambda item: item["gap"],
+        reverse=True
+    )
+
     return recommendations

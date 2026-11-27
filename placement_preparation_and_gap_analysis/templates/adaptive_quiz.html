@@ -1,0 +1,284 @@
+<<<<<<< HEAD
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='adaptive.css') }}">
+
+<section class="adaptive-page">
+
+    <div class="adaptive-hero">
+
+        <span class="adaptive-tag">{{ role }}</span>
+
+        <h1>{{ level }} Assessment</h1>
+
+        <p>Answer every question to complete this level.</p>
+
+    </div>
+
+    <div class="level-indicator">
+
+        {% for item in ["Beginner", "Intermediate", "Advanced"] %}
+
+            <div class="level-step
+                 {% if item == level %}active{% endif %}">
+
+                {{ item }}
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% if error %}
+        <div class="adaptive-error">{{ error }}</div>
+    {% endif %}
+
+    <div class="quiz-progress">
+
+        <span id="progress-text">
+            0 of {{ questions|length }} answered
+        </span>
+
+        <progress id="quiz-progress-bar"
+                  max="{{ questions|length }}"
+                  value="0">
+        </progress>
+
+    </div>
+
+    <form method="POST"
+          action="/adaptive/quiz"
+          id="adaptive-quiz">
+
+        <input type="hidden"
+               name="csrf_token"
+               value="{{ csrf_token }}">
+
+        <input type="hidden"
+               name="attempt_token"
+               value="{{ attempt_token }}">
+
+        {% for question in questions %}
+
+        <fieldset class="question-card">
+
+            <legend class="question-label">
+                Question {{ loop.index }} · {{ question.skill }}
+            </legend>
+
+            <h2>{{ question.question }}</h2>
+
+            <div class="answer-options">
+
+                {% for option in question.options %}
+
+                <label class="answer-option">
+
+                    <input type="radio"
+                           name="q_{{ question.id }}"
+                           value="{{ option }}"
+                           required>
+
+                    <span>{{ option }}</span>
+
+                </label>
+
+                {% endfor %}
+
+            </div>
+
+        </fieldset>
+
+        {% endfor %}
+
+        <button class="adaptive-btn submit-btn"
+                type="submit">
+
+            Submit Assessment →
+
+        </button>
+
+    </form>
+
+</section>
+
+<script>
+
+    const quizForm = document.getElementById("adaptive-quiz");
+
+    const progressBar =
+        document.getElementById("quiz-progress-bar");
+
+    const progressText =
+        document.getElementById("progress-text");
+
+    const totalQuestions =
+        quizForm.querySelectorAll(".question-card").length;
+
+    function updateProgress() {
+
+        const answered =
+            quizForm.querySelectorAll(
+                'input[type="radio"]:checked'
+            ).length;
+
+        progressBar.value = answered;
+
+        progressText.textContent =
+            `${answered} of ${totalQuestions} answered`;
+
+    }
+
+    quizForm.addEventListener("change", updateProgress);
+
+    updateProgress();
+
+</script>
+
+=======
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='adaptive.css') }}">
+
+<section class="adaptive-page">
+
+    <div class="adaptive-hero">
+
+        <span class="adaptive-tag">{{ role }}</span>
+
+        <h1>{{ level }} Assessment</h1>
+
+        <p>Answer every question to complete this level.</p>
+
+    </div>
+
+    <div class="level-indicator">
+
+        {% for item in ["Beginner", "Intermediate", "Advanced"] %}
+
+            <div class="level-step
+                 {% if item == level %}active{% endif %}">
+
+                {{ item }}
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% if error %}
+        <div class="adaptive-error">{{ error }}</div>
+    {% endif %}
+
+    <div class="quiz-progress">
+
+        <span id="progress-text">
+            0 of {{ questions|length }} answered
+        </span>
+
+        <progress id="quiz-progress-bar"
+                  max="{{ questions|length }}"
+                  value="0">
+        </progress>
+
+    </div>
+
+    <form method="POST"
+          action="/adaptive/quiz"
+          id="adaptive-quiz">
+
+        <input type="hidden"
+               name="csrf_token"
+               value="{{ csrf_token }}">
+
+        <input type="hidden"
+               name="attempt_token"
+               value="{{ attempt_token }}">
+
+        {% for question in questions %}
+
+        <fieldset class="question-card">
+
+            <legend class="question-label">
+                Question {{ loop.index }} · {{ question.skill }}
+            </legend>
+
+            <h2>{{ question.question }}</h2>
+
+            <div class="answer-options">
+
+                {% for option in question.options %}
+
+                <label class="answer-option">
+
+                    <input type="radio"
+                           name="q_{{ question.id }}"
+                           value="{{ option }}"
+                           required>
+
+                    <span>{{ option }}</span>
+
+                </label>
+
+                {% endfor %}
+
+            </div>
+
+        </fieldset>
+
+        {% endfor %}
+
+        <button class="adaptive-btn submit-btn"
+                type="submit">
+
+            Submit Assessment →
+
+        </button>
+
+    </form>
+
+</section>
+
+<script>
+
+    const quizForm = document.getElementById("adaptive-quiz");
+
+    const progressBar =
+        document.getElementById("quiz-progress-bar");
+
+    const progressText =
+        document.getElementById("progress-text");
+
+    const totalQuestions =
+        quizForm.querySelectorAll(".question-card").length;
+
+    function updateProgress() {
+
+        const answered =
+            quizForm.querySelectorAll(
+                'input[type="radio"]:checked'
+            ).length;
+
+        progressBar.value = answered;
+
+        progressText.textContent =
+            `${answered} of ${totalQuestions} answered`;
+
+    }
+
+    quizForm.addEventListener("change", updateProgress);
+
+    updateProgress();
+
+</script>
+
+>>>>>>> c4b8fdf7f9c8cceb95af9e45525f2e45c3a95d65
+{% endblock %}

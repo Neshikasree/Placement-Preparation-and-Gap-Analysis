@@ -1,27 +1,275 @@
+<<<<<<< HEAD
+
 {% extends "base.html" %}
-{% block title %}Register - Placement Preparation{% endblock %}
+
+{% block title %}PlaceReady | Home{% endblock %}
 
 {% block content %}
-<section class="card narrow">
-    <h1>Check your placement readiness</h1>
-    <p class="muted">Register, rate your current skills, and see how ready you are for your target job role.</p>
+
+<section class="hero">
+
+    <div class="hero-content">
+        <span class="eyebrow">YOUR CAREER STARTS HERE</span>
+
+        <h1>Get Ready.<br>Get Placed.</h1>
+
+        <p>
+            Identify your skill gaps, measure your placement readiness
+            and get personalised recommendations to prepare for your
+            dream job.
+        </p>
+
+        <div class="hero-buttons">
+    <a href="#register" class="btn">Get Started</a>
+
+    <a href="/adaptive/" class="btn">
+        Take Skill Assessment
+    </a>
+</div>    </div>
+
+    <div class="hero-card">
+        <div class="hero-symbol">P</div>
+        <h2>Your Placement Journey</h2>
+        <p>Assess. Analyse. Improve.</p>
+
+        <div class="journey-step">
+            <span>01</span>
+            <div>
+                <strong>Register</strong>
+                <small>Create your student profile</small>
+            </div>
+        </div>
+
+        <div class="journey-step">
+            <span>02</span>
+            <div>
+                <strong>Assess</strong>
+                <small>Rate your current skills</small>
+            </div>
+        </div>
+
+        <div class="journey-step">
+            <span>03</span>
+            <div>
+                <strong>Improve</strong>
+                <small>Follow your preparation plan</small>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<section class="features">
+
+    <div class="feature-card">
+        <h3>Skill Assessment</h3>
+        <p>Evaluate your current proficiency in important job-related skills.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Gap Analysis</h3>
+        <p>Compare your current skills with the requirements of your target role.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Personalised Guidance</h3>
+        <p>Get recommendations and learning resources to improve your skills.</p>
+    </div>
+
+</section>
+
+
+<section class="card register-card" id="register">
+
+    <div class="section-heading">
+        <span class="eyebrow">LET'S GET STARTED</span>
+        <h2>Create Your Profile</h2>
+        <p class="muted">Enter your details to begin your placement readiness assessment.</p>
+    </div>
 
     <form method="post" action="{{ url_for('register') }}">
-        <label for="name">Full name</label>
-        <input type="text" id="name" name="name" value="{{ form.get('name', '') }}" required>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" value="{{ form.get('email', '') }}" required>
+        <label for="name">Full Name</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your full name"
+            value="{{ form.get('name', '') }}"
+            required
+        >
 
-        <label for="target_role">Target job role</label>
+        <label for="email">Email Address</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            value="{{ form.get('email', '') }}"
+            required
+        >
+
+        <label for="target_role">Target Job Role</label>
+
         <select id="target_role" name="target_role" required>
-            <option value="" disabled {% if not form.get('target_role') %}selected{% endif %}>Choose a role</option>
+            <option value="" disabled {% if not form.get('target_role') %}selected{% endif %}>
+                Select your preferred role
+            </option>
+
             {% for role in roles %}
-                <option value="{{ role }}" {% if form.get('target_role') == role %}selected{% endif %}>{{ role }}</option>
+                <option value="{{ role }}"
+                    {% if form.get('target_role') == role %}selected{% endif %}>
+                    {{ role }}
+                </option>
             {% endfor %}
+
         </select>
 
-        <button type="submit" class="btn">Register and continue</button>
+        <button type="submit" class="btn btn-full">
+            Register and Continue
+        </button>
+
     </form>
+
 </section>
+
 {% endblock %}
+=======
+
+{% extends "base.html" %}
+
+{% block title %}PlaceReady | Home{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-content">
+        <span class="eyebrow">YOUR CAREER STARTS HERE</span>
+
+        <h1>Get Ready.<br>Get Placed.</h1>
+
+        <p>
+            Identify your skill gaps, measure your placement readiness
+            and get personalised recommendations to prepare for your
+            dream job.
+        </p>
+
+        <div class="hero-buttons">
+    <a href="#register" class="btn">Get Started</a>
+
+    <a href="/adaptive/" class="btn">
+        Take Skill Assessment
+    </a>
+</div>    </div>
+
+    <div class="hero-card">
+        <div class="hero-symbol">P</div>
+        <h2>Your Placement Journey</h2>
+        <p>Assess. Analyse. Improve.</p>
+
+        <div class="journey-step">
+            <span>01</span>
+            <div>
+                <strong>Register</strong>
+                <small>Create your student profile</small>
+            </div>
+        </div>
+
+        <div class="journey-step">
+            <span>02</span>
+            <div>
+                <strong>Assess</strong>
+                <small>Rate your current skills</small>
+            </div>
+        </div>
+
+        <div class="journey-step">
+            <span>03</span>
+            <div>
+                <strong>Improve</strong>
+                <small>Follow your preparation plan</small>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<section class="features">
+
+    <div class="feature-card">
+        <h3>Skill Assessment</h3>
+        <p>Evaluate your current proficiency in important job-related skills.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Gap Analysis</h3>
+        <p>Compare your current skills with the requirements of your target role.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Personalised Guidance</h3>
+        <p>Get recommendations and learning resources to improve your skills.</p>
+    </div>
+
+</section>
+
+
+<section class="card register-card" id="register">
+
+    <div class="section-heading">
+        <span class="eyebrow">LET'S GET STARTED</span>
+        <h2>Create Your Profile</h2>
+        <p class="muted">Enter your details to begin your placement readiness assessment.</p>
+    </div>
+
+    <form method="post" action="{{ url_for('register') }}">
+
+        <label for="name">Full Name</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your full name"
+            value="{{ form.get('name', '') }}"
+            required
+        >
+
+        <label for="email">Email Address</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            value="{{ form.get('email', '') }}"
+            required
+        >
+
+        <label for="target_role">Target Job Role</label>
+
+        <select id="target_role" name="target_role" required>
+            <option value="" disabled {% if not form.get('target_role') %}selected{% endif %}>
+                Select your preferred role
+            </option>
+
+            {% for role in roles %}
+                <option value="{{ role }}"
+                    {% if form.get('target_role') == role %}selected{% endif %}>
+                    {{ role }}
+                </option>
+            {% endfor %}
+
+        </select>
+
+        <button type="submit" class="btn btn-full">
+            Register and Continue
+        </button>
+
+    </form>
+
+</section>
+
+{% endblock %}
+>>>>>>> c4b8fdf7f9c8cceb95af9e45525f2e45c3a95d65

@@ -5,6 +5,11 @@ Then open http://127.0.0.1:5000 in your browser.
 """
 
 import os
+import sys
+from pathlib import Path
+
+# Allow imports from the repository root
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from flask import Flask, abort, flash, redirect, render_template, request, url_for
 from resources import RESOURCES
@@ -12,6 +17,7 @@ from database import (get_results, get_student, get_student_skills, init_db,
                       list_students, save_assessment, save_result, add_student)
 from gap_analysis import analyze_skills, get_recommendations
 from gap_analysis.roles import JOB_ROLES, SKILL_LEVEL_LABELS
+from adaptive_routes import adaptive_bp
 
 
 def readiness_level(score):
@@ -27,10 +33,22 @@ def readiness_level(score):
 
 def create_app(db_path=None):
     """Build the Flask app. db_path lets the tests use a temporary database."""
+
     app = Flask(__name__)
-    app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-only-change-me")
+
+    app.config["SECRET_KEY"] = os.environ.get(
+        "SECRET_KEY", "dev-only-change-me"
+    )
+
     app.config["DB_PATH"] = db_path
-    init_db(db_path)  # creates placement.db and the tables if they do not exist
+
+    init_db(db_path)
+
+    # Connect the adaptive assessment
+    app.register_blueprint(adaptive_bp)
+
+    def db():
+        return app.config["DB_PATH"]
 
     def db():
         return app.config["DB_PATH"]
@@ -40,6 +58,8 @@ def create_app(db_path=None):
     # ------------------------------------------------------------------
     @app.route("/")
     def index():
+        print("Available roles:", list(JOB_ROLES))
+        print("Total roles:", len(JOB_ROLES))
         return render_template("index.html", roles=list(JOB_ROLES), form={})
 
     @app.route("/register", methods=["POST"])
@@ -144,4 +164,4 @@ def create_app(db_path=None):
 app = create_app()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)

@@ -104,12 +104,12 @@ def test_unknown_student_gives_404(tmp_path):
     client = make_client(tmp_path)
     assert client.get("/assessment/99").status_code == 404
     assert client.get("/results/99").status_code == 404
-    assert "Page not found" in text(client.get("/results/99"))
+    assert "Page Not Found" in text(client.get("/results/99"))
 
 
 def test_students_page(tmp_path):
     client = make_client(tmp_path)
-    assert "No students have registered" in text(client.get("/students"))
+    assert "No students registered yet" in text(client.get("/students"))
     register(client)
     page = text(client.get("/students"))
     assert "Asha" in page

@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='adaptive.css') }}">
+
+<section class="adaptive-page">
+
+    <div class="adaptive-hero">
+
+        <span class="adaptive-tag">ASSESSMENT COMPLETE</span>
+
+        <h1>Your Skill Report</h1>
+
+        <p>{{ report.target_role }}</p>
+
+    </div>
+
+    <div class="result-summary">
+
+        <div class="result-card">
+
+            <div class="score-circle"
+                 style="--score: {{ report.overall_score }}%;">
+
+                <div class="score-inner">
+
+                    <strong>
+                        {{ report.overall_score }}%
+                    </strong>
+
+                    <span>Quiz Score</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="result-card">
+
+            <p>Estimated Skill Level</p>
+
+            <h2 class="estimated-level">
+                {{ report.estimated_level }}
+            </h2>
+
+            <p>
+                {{ report.total_correct }} correct out of
+                {{ report.total_questions }} questions
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="result-card">
+
+        <h2>Difficulty Progression</h2>
+
+        {% for stage in report.history %}
+
+        <div class="stage-row">
+
+            <strong>{{ stage.level }}</strong>
+
+            <span>{{ stage.score }}%</span>
+
+            {% if stage.passed %}
+
+                <span class="status-passed">Passed</span>
+
+            {% else %}
+
+                <span class="status-practice">
+                    Practice needed
+                </span>
+
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="result-card">
+
+        <h2>Skill-wise Performance</h2>
+
+        {% for skill, score in report.skill_scores.items() %}
+
+        <div class="skill-row">
+
+            <div class="skill-heading">
+
+                <strong>{{ skill }}</strong>
+
+                <span>{{ score }}%</span>
+
+            </div>
+
+            <progress
+                class="skill-progress
+                {% if score >= 80 %}strong-skill{% endif %}"
+                max="100"
+                value="{{ score }}"
+                aria-label="{{ skill }} score">
+            </progress>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="result-summary">
+
+        <div class="result-card">
+
+            <h2 class="strength-title">✓ Your Strengths</h2>
+
+            {% for skill in report.strengths %}
+
+                <div class="skill-chip">{{ skill }}</div>
+
+            {% else %}
+
+                <p>Keep learning and practising.</p>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="result-card">
+
+            <h2 class="weak-title">Skills to Improve</h2>
+
+            {% for skill in report.weak_skills %}
+
+                <div class="skill-chip weak-chip">
+                    {{ skill }}
+                </div>
+
+            {% else %}
+
+                <p>No weak skills identified in this quiz.</p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <div class="result-card">
+
+        <h2>Personalized Recommendations</h2>
+
+        {% for item in report.recommendations %}
+
+        <article class="recommendation">
+
+            <div class="skill-heading">
+
+                <h3>{{ item.skill }}</h3>
+
+                <span class="priority
+                      {{ item.priority|lower }}">
+
+                    {{ item.priority }} priority
+
+                </span>
+
+            </div>
+
+            <p>{{ item.suggestion }}</p>
+
+        </article>
+
+        {% else %}
+
+            <p>
+                Continue practising and exploring
+                more challenging topics.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="result-actions">
+
+        <a href="/adaptive/" class="adaptive-btn">
+            Retake Assessment
+        </a>
+
+    </div>
+
+    <p class="assessment-disclaimer">
+
+        This assessment provides a preliminary estimate
+        of your knowledge. It is not a professional
+        certification or guarantee of placement readiness.
+
+    </p>
+
+</section>
+
+{% endblock %}

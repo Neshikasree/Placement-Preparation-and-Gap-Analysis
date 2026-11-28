@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 """Gap analysis package (Member 1).
 
 Member 3 can import everything needed with:

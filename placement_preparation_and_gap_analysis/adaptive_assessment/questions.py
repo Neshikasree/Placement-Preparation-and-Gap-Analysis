@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 """PlaceReady adaptive assessment question bank."""
 

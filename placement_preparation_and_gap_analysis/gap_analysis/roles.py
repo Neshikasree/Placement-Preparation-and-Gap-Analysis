@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 """Sample career skill requirements for PlaceReady.
 

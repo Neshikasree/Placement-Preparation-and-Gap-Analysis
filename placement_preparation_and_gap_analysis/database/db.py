@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 """SQLite connection and table creation (Member 2)."""
 
 import os

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 """Skill gap analysis and preparation recommendations (Member 1).
 
 Public functions (the interface shared with Member 2 and Member 3):

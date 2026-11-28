@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 """Database package (Member 2).
 
 Member 3 can import everything needed with:

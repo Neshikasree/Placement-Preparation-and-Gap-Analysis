@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 import sys
 import secrets

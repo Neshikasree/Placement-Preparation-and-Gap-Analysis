@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 """PlaceReady adaptive assessment demo."""
 

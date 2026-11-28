@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 """Database functions used by Member 3's Flask routes (Member 2).
 
 Every function has an optional db_path argument (used by the tests).

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 """Adaptive assessment and scoring engine for PlaceReady."""
 

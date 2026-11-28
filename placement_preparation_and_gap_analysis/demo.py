@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 """Standalone demo for Member 1's module (no database or Flask needed).
 
 Run from the project root:   python demo.py

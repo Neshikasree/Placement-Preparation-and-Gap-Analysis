@@ -28,34 +28,3 @@
     </form>
 </section>
 {% endblock %}
-=======
-{% extends "base.html" %}
-{% block title %}Skill Assessment{% endblock %}
-
-{% block content %}
-<section class="card narrow">
-    <h1>Skill assessment</h1>
-    <p class="muted">
-        Hello {{ student.name }}! Rate your current level for each skill needed by a
-        <strong>{{ student.target_role }}</strong>.
-    </p>
-
-    <form method="post" action="{{ url_for('assessment', student_id=student.id) }}">
-        {% for skill, required in skills.items() %}
-            <label for="skill-{{ loop.index }}">
-                {{ skill }} <span class="hint">(required level: {{ required }})</span>
-            </label>
-            <select id="skill-{{ loop.index }}" name="{{ skill }}">
-                {% for level, label in levels.items() %}
-                    <option value="{{ level }}" {% if current.get(skill)|string == level|string %}selected{% endif %}>
-                        {{ level }} - {{ label }}
-                    </option>
-                {% endfor %}
-            </select>
-        {% endfor %}
-
-        <button type="submit" class="btn">Calculate my readiness</button>
-    </form>
-</section>
-{% endblock %}
->>>>>>> c4b8fdf7f9c8cceb95af9e45525f2e45c3a95d65
